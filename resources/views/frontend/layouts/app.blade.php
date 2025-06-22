@@ -27,7 +27,7 @@
 
                 <!-- Kolom Logo (4 logo sejajar) -->
                 <div class="col-12 col-lg-4 mb-lg-0 d-flex justify-content-center mb-3 flex-wrap gap-3">
-                    <img alt="Logo Kota Metro" class="img-fluid" src="{{ asset('storage/' . $profilSekolah->logo_kota ?? '') }}" style="width: 80px; height: 80px; object-fit: contain;">
+                    {{-- <img alt="Logo Kota Metro" class="img-fluid" src="{{ asset('storage/' . $profilSekolah->logo_kota ?? '') }}" style="width: 80px; height: 80px; object-fit: contain;"> --}}
                     <img alt="Logo JSIT" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_jsit ?? '') }}" style="width: 80px; height: 80px; object-fit: cover;">
 
                     @if (!empty($profilSekolah->logo_yayasan))
