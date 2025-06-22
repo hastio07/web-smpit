@@ -74,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($sosmed as $item)
+                            @forelse ($dataSosmed as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->platform }}</td>

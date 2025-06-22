@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Menyediakan data profil sekolah ke semua view yang ada di frontend.*
-        View::composer('frontend.*', function ($view) {
+        View::composer('*', function ($view) {
             $view->with('profilSekolah', ProfilSekolah::first());
 
             $sosmed = SosialMedia::all()->keyBy('platform');
