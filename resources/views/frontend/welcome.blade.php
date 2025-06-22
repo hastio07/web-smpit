@@ -10,7 +10,7 @@
     <section>
 
         {{-- welcome card --}}
-        {{-- <div class="hero-section d-flex align-items-center py-5 text-center text-white" style="background-color: #0dcaf0;">
+        <div class="hero-section d-flex align-items-center py-5 text-center text-white" style="background-color: #0dcaf0;">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
 
@@ -58,7 +58,7 @@
 
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         {{-- sosial media --}}
         <div class="container my-4">
