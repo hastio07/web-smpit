@@ -8,31 +8,6 @@ body {
     width: 100% !important;
 }
 
-.navbar-nav>.logo-wrapper-custom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.logo-wrapper-custom img {
-    width: 80px !important;
-    height: 80px !important;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-@media (max-width: 576px) {
-    .logo-wrapper-custom {
-        gap: 0.5rem;
-    }
-
-    .logo-wrapper-custom img {
-        width: 65px !important;
-        height: 65px !important;
-    }
-}
-
 .navbar-nav .nav-link {
     transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
@@ -43,8 +18,7 @@ body {
     text-shadow: 0 0 4px rgba(252, 253, 253, 0.8);
 }
 
-
-
+/* Gambar logo */
 .hero-section {
     background-color: #0dcaf0;
     height: 85vh;
