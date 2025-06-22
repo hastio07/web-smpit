@@ -12,26 +12,18 @@
         {{-- welcome card --}}
         <div class="hero-section d-flex align-items-center py-5 text-center text-white" style="background-color: #0dcaf0;">
             <div class="container">
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-center position-relative">
 
                     <!-- Gambar Kiri -->
-                    <div class="col-12 col-md-3 mb-md-0 d-flex justify-content-center position-relative mb-4">
+                    <div class="col-12 col-md-3 mb-md-0 d-flex justify-content-center position-relative gambar-kiri mb-4">
                         <div class="position-relative" style="max-height: 100vh; overflow: hidden;">
                             <img alt="Gambar Kiri" class="img-fluid w-100 rounded" src="{{ asset('images/orang-senang5.png') }}" style="object-fit: contain; max-height: 100vh;">
-                            <!-- Overlay gradasi yang menyatu -->
-                            <div style="
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                right: 0;
-                                height: 150px;
-                                background: linear-gradient(to bottom, rgba(13, 202, 240, 0), rgba(13, 202, 240, 1));
-                            "></div>
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to bottom, rgba(13, 202, 240, 0), rgba(13, 202, 240, 1));"></div>
                         </div>
                     </div>
 
                     <!-- Teks Tengah -->
-                    <div class="col-12 col-md-6 text-center">
+                    <div class="col-12 col-md-6 teks-tengah text-center">
                         <h1 class="fw-bold display-5">Selamat Datang Di<br>SMPIT Bina Insani</h1>
                         <p class="lead mt-3">Sekolahnya Para Juara Pemburu Sukses Dunia Akhirat</p>
                         <div class="d-flex justify-content-center mt-4 flex-wrap gap-3">
@@ -41,18 +33,10 @@
                     </div>
 
                     <!-- Gambar Kanan -->
-                    <div class="col-12 col-md-3 mt-md-0 d-flex justify-content-center position-relative mt-4">
+                    <div class="col-12 col-md-3 mt-md-0 d-flex justify-content-center position-relative gambar-kanan mt-4">
                         <div class="position-relative" style="max-height: 100vh; overflow: hidden;">
                             <img alt="Gambar Kanan" class="img-fluid w-100 rounded" src="{{ asset('images/orang-senang6.png') }}" style="object-fit: contain; max-height: 100vh;">
-                            <!-- Overlay gradasi yang menyatu -->
-                            <div style="
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                right: 0;
-                                height: 150px;
-                                background: linear-gradient(to bottom, rgba(13, 202, 240, 0), rgba(13, 202, 240, 1));
-                            "></div>
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to bottom, rgba(13, 202, 240, 0), rgba(13, 202, 240, 1));"></div>
                         </div>
                     </div>
 
@@ -75,7 +59,9 @@
                             <div class="social-icon-box mb-2">
                                 <i class="bi bi-tiktok fs-1"></i>
                             </div>
-                            <div class="fw-semibold">{{ $dataSosmed['TikTok']->nama }}</div>
+                            <div class="fw-semibold">
+                                {{ $dataSosmed['TikTok']->nama }}
+                            </div>
                         </a>
                     </div>
                 @endisset
@@ -87,7 +73,9 @@
                             <div class="social-icon-box mb-2">
                                 <i class="bi bi-instagram fs-1 text-danger"></i>
                             </div>
-                            <div class="fw-semibold">{{ $dataSosmed['Instagram']->nama }}</div>
+                            <div class="fw-semibold">
+                                {{ $dataSosmed['Instagram']->nama }}
+                            </div>
                         </a>
                     </div>
                 @endisset
@@ -99,7 +87,9 @@
                             <div class="social-icon-box mb-2">
                                 <i class="bi bi-youtube fs-1 text-danger"></i>
                             </div>
-                            <div class="fw-semibold">{{ $dataSosmed['YouTube']->nama }}</div>
+                            <div class="fw-semibold">
+                                {{ $dataSosmed['YouTube']->nama }}
+                            </div>
                         </a>
                     </div>
                 @endisset
@@ -111,7 +101,9 @@
                             <div class="social-icon-box mb-2">
                                 <i class="bi bi-facebook fs-1 text-primary"></i>
                             </div>
-                            <div class="fw-semibold">{{ $dataSosmed['Facebook']->nama }}</div>
+                            <div class="fw-semibold">
+                                {{ $dataSosmed['Facebook']->nama }}
+                            </div>
                         </a>
                     </div>
                 @endisset
@@ -123,7 +115,9 @@
                             <div class="social-icon-box mb-2">
                                 <i class="bi bi-twitter fs-1 text-info"></i>
                             </div>
-                            <div class="fw-semibold">{{ $dataSosmed['Twitter']->nama }}</div>
+                            <div class="fw-semibold">
+                                {{ $dataSosmed['Twitter']->nama }}
+                            </div>
                         </a>
                     </div>
                 @endisset

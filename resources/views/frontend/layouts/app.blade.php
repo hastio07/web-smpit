@@ -24,19 +24,29 @@
             <div class="row align-items-center justify-content-start mx-1 px-3 py-4" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 1rem;">
 
                 <!-- Kolom Logo (4 logo sejajar) -->
-                <div class="col-12 col-lg-4 mb-lg-0 d-flex justify-content-center mb-3 flex-wrap gap-3">
-                    <img alt="Logo Kota Metro" class="img-fluid" src="{{ asset('storage/' . $profilSekolah->logo_kota ?? '') }}" style="width: 80px; height: 80px; object-fit: contain;">
-                    <img alt="Logo JSIT" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_jsit ?? '') }}" style="width: 80px; height: 80px; object-fit: cover;">
+                <div class="container my-4">
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex flex-lg-nowrap justify-content-center align-items-center flex-wrap gap-3">
 
-                    @if (!empty($profilSekolah->logo_yayasan))
-                        <img alt="Logo Yayasan" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_yayasan) }}" style="width: 80px; height: 80px; object-fit: cover;">
-                    @endif
+                            {{-- Logo Kota --}}
+                            <img alt="Logo Kota Metro" class="img-fluid logo-img" src="{{ asset('storage/' . $profilSekolah->logo_kota ?? '') }}" style="width: 80px; height: 80px; object-fit: contain;">
 
-                    @if (!empty($profilSekolah->logo_smpit))
-                        <img alt="Logo SMPIT" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_smpit) }}" style="width: 80px; height: 80px; object-fit: cover;">
-                    @endif
+                            {{-- Logo JSIT --}}
+                            <img alt="Logo JSIT" class="img-fluid rounded-circle logo-img" src="{{ asset('storage/' . $profilSekolah->logo_jsit ?? '') }}" style="width: 80px; height: 80px; object-fit: cover;">
+
+                            {{-- Logo Yayasan --}}
+                            @if (!empty($profilSekolah->logo_yayasan))
+                                <img alt="Logo Yayasan" class="img-fluid rounded-circle logo-img" src="{{ asset('storage/' . $profilSekolah->logo_yayasan) }}" style="width: 80px; height: 80px; object-fit: cover;">
+                            @endif
+
+                            {{-- Logo SMPIT --}}
+                            @if (!empty($profilSekolah->logo_smpit))
+                                <img alt="Logo SMPIT" class="img-fluid rounded-circle logo-img" src="{{ asset('storage/' . $profilSekolah->logo_smpit) }}" style="width: 80px; height: 80px; object-fit: cover;">
+                            @endif
+
+                        </div>
+                    </div>
                 </div>
-
                 <!-- Kolom Teks -->
                 <div class="col-12 col-lg-8 text-lg-start text-center">
                     <h1 class="fw-bold text-uppercase mb-2">{{ $profilSekolah->nama_sekolah ?? '' }}</h1>
