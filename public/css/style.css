@@ -2,8 +2,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html,
 body {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+    width: 100% !important;
 }
 
 .navbar-nav .nav-link {
@@ -16,6 +18,7 @@ body {
     text-shadow: 0 0 4px rgba(252, 253, 253, 0.8);
 }
 
+/* Gambar logo */
 @media (max-width: 576px) {
     .logo-img {
         width: 60px !important;
@@ -25,12 +28,8 @@ body {
 
 .hero-section {
     background-color: #0dcaf0;
-    /* warna biru */
-
     height: 85vh;
-    /* layar penuh */
     overflow: hidden;
-    /* hilangkan elemen yang melewati batas */
     position: relative;
 }
 
@@ -60,7 +59,6 @@ body {
     }
 
     .hero-section {
-        position: relative;
         padding-top: 5rem;
         padding-bottom: 5rem;
     }
@@ -83,10 +81,8 @@ body {
     max-width: 100%;
 }
 
-
 .carousel-indicators [data-bs-target] {
     background-color: var(--bs-primary);
-    /* Biru Bootstrap */
     width: 10px;
     height: 10px;
     opacity: 0.5;
@@ -118,21 +114,15 @@ body {
 /* berita terbaru */
 .slick-dots li button:before {
     font-size: 12px;
-    /* Ukuran bulatan (default: 6-12px) */
     color: #999;
-    /* Warna normal (belum aktif) */
     opacity: 0.75;
-    /* Transparansi default */
 }
 
-/* Dot aktif (yang sedang ditampilkan) */
 .slick-dots li.slick-active button:before {
     color: #3cc8ff !important;
-    /* Warna dot aktif */
     opacity: 1;
 }
 
-/* Tambahan: jika ingin spacing antar dot lebih besar */
 .slick-dots li {
     margin: 0 6px;
 }
