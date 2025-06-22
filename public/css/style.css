@@ -15,24 +15,23 @@ body {
     text-shadow: 0 0 4px rgba(252, 253, 253, 0.8);
 }
 
-/* Grid responsif logo */
-/* Atur ukuran dasar untuk semua logo */
+/* Untuk semua logo gambar */
 .logo-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover !important;
     flex-shrink: 0;
 }
 
-/* Atur logo tertentu agar tetap contain (misal: logo kota) */
+/* Untuk logo yang butuh object-fit: contain */
 .logo-img[alt~="Metro"] {
-    object-fit: contain;
+    object-fit: contain !important;
 }
 
-/* Responsif: jika layar lebih kecil dari 576px (HP), perkecil ukuran logo */
+/* Responsif HP */
 @media (max-width: 576px) {
     .logo-img {
-        width: 60px;
-        height: 60px;
+        width: 60px !important;
+        height: 60px !important;
     }
 }
