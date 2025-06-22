@@ -21,7 +21,7 @@
 
                     <div class="row">
                         <!-- Identitas Siswa -->
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-8 bg-transparent">
                             <table class="table-borderless w-100 table align-top">
                                 <tbody>
                                     <tr>
