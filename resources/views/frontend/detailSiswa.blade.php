@@ -3,6 +3,7 @@
 @section('title', 'Detail Siswa')
 
 @push('styles')
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styleDetailSiswa.css') }}" rel="stylesheet">
 @endpush
 
@@ -21,7 +22,7 @@
 
                     <div class="row">
                         <!-- Identitas Siswa -->
-                        <div class="col-12 col-md-8 bg-transparent">
+                        <div class="col-12 col-md-8">
                             <table class="table-borderless w-100 table align-top">
                                 <tbody>
                                     <tr>

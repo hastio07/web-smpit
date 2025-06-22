@@ -1,13 +1,3 @@
-* {
-    font-family: 'Poppins', sans-serif !important;
-}
-
-html,
-body {
-    overflow-x: hidden !important;
-    width: 100% !important;
-}
-
 .line {
     height: 3px;
     flex-grow: 1;
