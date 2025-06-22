@@ -14,29 +14,3 @@ body {
     transform: scale(1.05);
     text-shadow: 0 0 4px rgba(252, 253, 253, 0.8);
 }
-
-.logo-container img {
-    transition: all 0.3s ease;
-}
-
-/* Logo Kota Metro - tidak berubah ukuran */
-.logo-kota {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-}
-
-/* Logo lain - responsive */
-.logo-default {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-@media (max-width: 576px) {
-    .logo-default {
-        width: 60px;
-        height: 60px;
-    }
-}

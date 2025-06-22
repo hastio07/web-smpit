@@ -8,13 +8,15 @@
     <title>@yield('title', 'Judul Default')</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Slick CSS -->
     <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" />
+    <!-- Slick Theme (optional) -->
     <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" />
     <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
-    @stack('styles')
 
+    @stack('styles')
 </head>
 
 <body>
@@ -23,19 +25,18 @@
             <div class="row align-items-center justify-content-start mx-1 px-3 py-4" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 1rem;">
 
                 <!-- Kolom Logo (4 logo sejajar) -->
-                <div class="col-12 col-lg-4 mb-lg-0 d-flex justify-content-center logo-container mb-3 flex-wrap gap-3">
-                    <img alt="Logo Kota Metro" class="img-fluid logo-kota" src="{{ asset('storage/' . $profilSekolah->logo_kota ?? '') }}">
-                    <img alt="Logo JSIT" class="img-fluid logo-default" src="{{ asset('storage/' . $profilSekolah->logo_jsit ?? '') }}">
+                <div class="col-12 col-lg-4 mb-lg-0 d-flex justify-content-center mb-3 flex-wrap gap-3">
+                    <img alt="Logo Kota Metro" class="img-fluid" src="{{ asset('storage/' . $profilSekolah->logo_kota ?? '') }}" style="width: 80px; height: 80px; object-fit: contain;">
+                    <img alt="Logo JSIT" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_jsit ?? '') }}" style="width: 80px; height: 80px; object-fit: cover;">
 
                     @if (!empty($profilSekolah->logo_yayasan))
-                        <img alt="Logo Yayasan" class="img-fluid logo-default" src="{{ asset('storage/' . $profilSekolah->logo_yayasan) }}">
+                        <img alt="Logo Yayasan" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_yayasan) }}" style="width: 80px; height: 80px; object-fit: cover;">
                     @endif
 
                     @if (!empty($profilSekolah->logo_smpit))
-                        <img alt="Logo SMPIT" class="img-fluid logo-default" src="{{ asset('storage/' . $profilSekolah->logo_smpit) }}">
+                        <img alt="Logo SMPIT" class="img-fluid rounded-circle" src="{{ asset('storage/' . $profilSekolah->logo_smpit) }}" style="width: 80px; height: 80px; object-fit: cover;">
                     @endif
                 </div>
-
 
                 <!-- Kolom Teks -->
                 <div class="col-12 col-lg-8 text-lg-start text-center">
@@ -48,32 +49,41 @@
         </div>
     </section>
 
+
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg bg-warning navbar-dark py-2">
         <div class="container-fluid align-items-center">
+            <!-- Brand dan Navigasi -->
             <div class="flex-grow-1 d-flex flex-column align-items-center text-center">
+                <!-- Toggler dan Menu -->
                 <button class="navbar-toggler border-0 text-white" data-bs-target="#navbarCenter" data-bs-toggle="collapse" type="button">
                     <i class="bi bi-chevron-compact-down fs-4"></i>
                 </button>
+
                 <div class="navbar-collapse justify-content-center collapse" id="navbarCenter">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link text-white" href="/">Beranda</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="#">Tentang</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="#">Layanan</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="#">Kontak</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('daftar.siswa') }}">Daftar Siswa</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('daftar.siswa') }}">Daftar Siswa</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
+
+            <!-- Logo Kanan -->
         </div>
     </nav>
 
+
     {{-- Konten Dinamis --}}
-    <div>
+    <div class="">
         @yield('content')
     </div>
 
-    {{-- Footer --}}
     <div class="footer">
         <footer class="bg-info pt-5 text-white">
             <div class="container">
@@ -96,11 +106,10 @@
                             <li class="d-flex align-items-center mb-2">
                                 <i class="bi bi-telephone-plus-fill fs-5 me-2"></i>
                                 <span>{{ $profilSekolah->telepon ?? '' }}</span>
-                            </li>
+                            <li>
                             <li class="d-flex align-items-center mb-2">
                                 <i class="bi bi-whatsapp fs-5 me-2"></i>
                                 <span>{{ $profilSekolah->wa ?? '' }}</span>
-                            </li>
                             <li>
                                 <div class="d-flex mt-2 flex-wrap gap-3">
                                     <a class="fs-3 text-white" href="#"><i class="bi bi-facebook"></i></a>
@@ -110,6 +119,7 @@
                                 </div>
                             </li>
                         </ul>
+
                     </div>
 
                     <!-- Alamat dan Maps -->
@@ -120,7 +130,9 @@
                         </div>
                         <p>{{ $profilSekolah->alamat ?? '' }}</p>
                         <div class="ratio ratio-16x9">
-                            <iframe class="rounded-3" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ $profilSekolah->maps ?? '' }}" style="border:0;" width="100%"></iframe>
+                            <iframe class="rounded-3" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ $profilSekolah->maps ?? '' }}" style="border:0;" width="100%">
+                            </iframe>
+
                         </div>
                     </div>
                 </div>
@@ -131,16 +143,20 @@
                 </div>
             </div>
         </footer>
-    </div>
 
+    </div>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
+    <!-- jQuery (required by Slick) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick JS -->
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     @stack('scripts')
+
 </body>
 
 </html>
