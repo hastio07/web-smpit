@@ -2,6 +2,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .navbar-nav .nav-link {
     transition: transform 0.3s ease, text-shadow 0.3s ease;
 }

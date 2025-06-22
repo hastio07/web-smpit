@@ -46,7 +46,7 @@
 
         {{-- sosial media --}}
         <div class="container my-4">
-            <div class="row justify-content-center rounded-5 p-5 text-center" data-aos="fade-up">
+            <div class="row justify-content-center rounded-5 p-5 text-center">
                 <div class="head-sosmed mb-4">
                     <h1 class="mb-2">Sosial Media Kami</h1>
                     <p>Kunjungi kami di sosial media untuk berinteraksi lebih jauh</p>
@@ -129,7 +129,7 @@
             <div class="container my-5">
                 <div class="row g-4 align-items-start">
                     <!-- Foto Kepala Sekolah -->
-                    <div class="col-md-6" data-aos="fade-right">
+                    <div class="col-md-6">
                         <div class="overflow-hidden rounded bg-white p-3 text-center shadow">
                             @if (!empty($profil?->foto))
                                 <img alt="Foto Kepala Sekolah" class="img-fluid rounded-3 shadow-sm" src="{{ asset('storage/' . $profil->foto) }}" style="max-height: 360px; object-fit: cover;">
@@ -142,7 +142,7 @@
                     </div>
 
                     <!-- Sambutan -->
-                    <div class="col-md-6" data-aos="fade-left">
+                    <div class="col-md-6">
                         <div class="text-white">
                             <h4 class="fw-bold mb-3">Sambutan Kepala Sekolah</h4>
                             {!! nl2br(e($profil->sambutan ?? 'Belum ada sambutan.')) !!}
@@ -161,7 +161,7 @@
                 </div>
                 <div class="row g-4 align-items-start">
                     <!-- Video YouTube -->
-                    <div class="col-md-6" data-aos="fade-right">
+                    <div class="col-md-6">
                         @if ($tigaProgram && $tigaProgram->youtube)
                             <div class="ratio ratio-16x9">
                                 <iframe allowfullscreen class="rounded-5" src="{{ $tigaProgram->youtube }}"></iframe>
@@ -174,7 +174,7 @@
 
                     <!-- Keunggulan SMP -->
                     @if ($tigaProgram)
-                        <div class="col-md-6" data-aos="fade-left">
+                        <div class="col-md-6">
                             <div class="h-100 p-4">
                                 <div class="d-flex align-items-start mb-3">
                                     <i class="bi {{ $tigaProgram->icon1 }} fs-3 text-warning me-3"></i>
