@@ -39,3 +39,9 @@
         opacity: 1;
     }
 }
+
+
+td.value {
+    word-break: break-word;
+    white-space: normal;
+}

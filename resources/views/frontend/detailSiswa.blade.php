@@ -23,38 +23,40 @@
                     <div class="row">
                         <!-- Identitas Siswa -->
                         <div class="col-12 col-md-8">
-                            <table class="table-borderless table">
-                                <tr>
-                                    <th style="width: 150px;">NIS</th>
-                                    <td>: {{ $siswa->nis }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Kelas</th>
-                                    <td>: {{ $siswa->kelas }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>: {{ ucfirst($siswa->status) }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>: {{ $siswa->email }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nomor HP</th>
-                                    <td>: {{ $siswa->nomor_hp }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Orang Tua</th>
-                                    <td>: {{ $siswa->nama_ayah }} / {{ $siswa->nama_ibu }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Alamat</th>
-                                    <td>: {{ $siswa->alamat }}</td>
-                                </tr>
+                            <table class="table-borderless w-100 table align-top">
+                                <tbody>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">NIS</th>
+                                        <td class="value">{{ $siswa->nis }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">Kelas </th>
+                                        <td class="value">{{ $siswa->kelas }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">Status </th>
+                                        <td class="value">{{ ucfirst($siswa->status) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">Email</th>
+                                        <td class="value"> {{ $siswa->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">Nomor HP </th>
+                                        <td class="value">{{ $siswa->nomor_hp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">Orang Tua </th>
+                                        <td class="value">{{ $siswa->nama_ayah }} / {{ $siswa->nama_ibu }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="label text-nowrap pe-2">Alamat </th>
+                                        <td class="value">{{ $siswa->alamat }}</td>
+                                    </tr>
+                                </tbody>
                             </table>
-                        </div>
 
+                        </div>
 
                         <!-- Foto -->
                         <div class="col-12 col-md-4 text-center">
@@ -90,7 +92,4 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
