@@ -1,0 +1,95 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar-nav .nav-link {
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    transform: scale(1.05);
+    text-shadow: 0 0 4px rgba(252, 253, 253, 0.8);
+}
+
+.hero-section {
+    background-color: #0dcaf0;
+    /* warna biru */
+
+    height: 85vh;
+    /* layar penuh */
+    overflow: hidden;
+    /* hilangkan elemen yang melewati batas */
+    position: relative;
+}
+
+
+.badge-circle {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    padding: 12px 20px;
+    font-weight: bold;
+    color: #0dcaf0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* .text-truncate-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+} */
+
+.carousel-indicators [data-bs-target] {
+    background-color: var(--bs-primary);
+    /* Biru Bootstrap */
+    width: 10px;
+    height: 10px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    margin: 0 4px;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+}
+
+.social-icon-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.social-icon-box:hover {
+    transform: scale(1.1);
+}
+
+/* berita terbaru */
+.slick-dots li button:before {
+    font-size: 12px;
+    /* Ukuran bulatan (default: 6-12px) */
+    color: #999;
+    /* Warna normal (belum aktif) */
+    opacity: 0.75;
+    /* Transparansi default */
+}
+
+/* Dot aktif (yang sedang ditampilkan) */
+.slick-dots li.slick-active button:before {
+    color: #3cc8ff !important;
+    /* Warna dot aktif */
+    opacity: 1;
+}
+
+/* Tambahan: jika ingin spacing antar dot lebih besar */
+.slick-dots li {
+    margin: 0 6px;
+}

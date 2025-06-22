@@ -1,0 +1,41 @@
+.line {
+    height: 3px;
+    flex-grow: 1;
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.line-left {
+    animation: revealFromRight 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.line-right {
+    animation: revealFromLeft 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes revealFromRight {
+    0% {
+        transform: translateX(100%) scaleX(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes revealFromLeft {
+    0% {
+        transform: translateX(-100%) scaleX(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+    }
+}
