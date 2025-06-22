@@ -15,23 +15,28 @@ body {
     text-shadow: 0 0 4px rgba(252, 253, 253, 0.8);
 }
 
-/* Untuk semua logo gambar */
-.logo-img {
-    width: 80px !important;
-    height: 80px !important;
-    object-fit: cover !important;
-    flex-shrink: 0;
+.logo-container img {
+    transition: all 0.3s ease;
 }
 
-/* Untuk logo yang butuh object-fit: contain */
-.logo-img[alt~="Metro"] {
-    object-fit: contain !important;
+/* Logo Kota Metro - tidak berubah ukuran */
+.logo-kota {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
 }
 
-/* Responsif HP */
+/* Logo lain - responsive */
+.logo-default {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 @media (max-width: 576px) {
-    .logo-img {
-        width: 60px !important;
-        height: 60px !important;
+    .logo-default {
+        width: 60px;
+        height: 60px;
     }
 }
