@@ -90,10 +90,10 @@
                     Mata Pelajaran
                 </a>
 
-
-                <a class="collapse-item {{ request()->routeIs('guru.tendik.form') ? 'active' : '' }}" href="{{ route('guru.tendik.form') }}">
+                <a class="collapse-item {{ request()->routeIs('guru.tendik.index') ? 'active' : '' }}" href="{{ route('guru.tendik.index') }}">
                     Daftar Guru & Tendik
                 </a>
+
                 <a class="collapse-item {{ request()->routeIs('rombel.form') ? 'active' : '' }}" href="{{ route('rombel.form') }}">
                     Data Kelas & Rombel
                 </a>

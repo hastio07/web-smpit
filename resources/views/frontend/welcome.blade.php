@@ -134,7 +134,7 @@
                             @if (!empty($profil?->foto))
                                 <img alt="Foto Kepala Sekolah" class="img-fluid rounded-3 shadow-sm" src="{{ asset('storage/' . $profil->foto) }}" style="max-height: 360px; object-fit: cover;">
                             @else
-                                <img alt="Foto Kepala Sekolah" class="img-fluid rounded-3 shadow-sm" src="{{ asset('images/kepsek.jpg') }}" style="max-height: 360px; object-fit: cover;">
+                                <img alt="Foto Kepala Sekolah" class="img-fluid rounded-3 shadow-sm" src="{{ asset('images/frontend-designer.png') }}" style="max-height: 360px; object-fit: cover;">
                             @endif
                             <h5 class="text-dark fw-bold mb-0 mt-3">{{ $profil->nama ?? 'Nama Kepala Sekolah' }}</h5>
                             <small class="text-muted">{{ $profil->jabatan ?? 'Jabatan Kepala Sekolah' }}</small>

@@ -64,28 +64,46 @@
         <div class="container-fluid align-items-center">
             <!-- Brand dan Navigasi -->
             <div class="flex-grow-1 d-flex flex-column align-items-center text-center">
-                <!-- Toggler dan Menu -->
-                <button class="navbar-toggler border-0 text-white" data-bs-target="#navbarCenter" data-bs-toggle="collapse" type="button">
+                <!-- Toggler -->
+                <button aria-controls="navbarCenter" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler border-0 text-white" data-bs-target="#navbarCenter" data-bs-toggle="collapse" type="button">
                     <i class="bi bi-chevron-compact-down fs-4"></i>
                 </button>
 
+                <!-- Navbar Collapse -->
                 <div class="navbar-collapse justify-content-center collapse" id="navbarCenter">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link text-white" href="/">Beranda</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Tentang</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Layanan</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Kontak</a></li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('daftar.siswa') }}">Daftar Siswa</a>
+                            <a class="nav-link text-white" href="/">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Layanan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Kontak</a>
                         </li>
 
+                        <!-- ✅ Dropdown Akademik -->
+                        <li class="nav-item dropdown position-relative">
+                            <a aria-expanded="false" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                                Akademik
+                            </a>
+                            <ul aria-labelledby="navbarDropdown" class="dropdown-menu animate__animated rounded border-0 shadow">
+                                <li><a class="dropdown-item" href="{{ route('daftar.siswa') }}">Daftar Siswa</a></li>
+                                <li><a class="dropdown-item" href="#">Jadwal Pelajaran</a></li>
+                                <li><a class="dropdown-item" href="{{ route('daftar.tendik') }}">Daftar Tendik</a></li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
-
-            <!-- Logo Kanan -->
+            <!-- Tambahkan logo kanan di sini jika ada -->
         </div>
     </nav>
+
 
 
     {{-- Konten Dinamis --}}
