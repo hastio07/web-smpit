@@ -4,52 +4,52 @@
 
 @push('styles')
     <style>
-        .card-photo {
+        .gallery-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .photo-card {
             position: relative;
+            display: inline-block;
+            border-radius: 0.5rem;
             overflow: hidden;
-            border-radius: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
         }
 
-        .card-photo:hover {
+        .photo-card:hover {
             transform: scale(1.03);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
         }
 
-        .card-photo img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 1rem;
+        .photo-card img {
+            display: block;
+            height: auto;
+            width: auto;
+            max-height: 250px;
         }
 
         .photo-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
             height: 100%;
+            width: 100%;
             background: rgba(0, 0, 0, 0.4);
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 500;
             opacity: 0;
             transition: opacity 0.3s ease;
-            border-radius: 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
         }
 
-        .card-photo:hover .photo-overlay {
+        .photo-card:hover .photo-overlay {
             opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            .card-photo img {
-                height: 180px;
-            }
         }
     </style>
 @endpush
@@ -58,26 +58,20 @@
     <div class="container py-5">
         <h2 class="mb-4 text-center">Galeri Guru & Tendik</h2>
 
-        <div class="row g-4">
+        <div class="gallery-flex">
             @foreach ($data ?? ($tendikList ?? []) as $tendik)
                 @if (!empty($tendik->foto))
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a class="text-decoration-none" href="/">
-                            <div class="card-photo">
-                                <img alt="{{ $tendik->nama_lengkap }}" src="{{ asset('storage/' . $tendik->foto) }}">
-                                <div class="photo-overlay">
-                                    <i class="bi bi-eye me-1"></i> View
-                                </div>
-                            </div>
-                        </a>
+                    <div class="photo-card">
+                        <img alt="{{ $tendik->nama_lengkap }}" src="{{ asset('storage/' . $tendik->foto) }}">
+                        <div class="photo-overlay">
+                            <i class="bi bi-eye me-1"></i> View
+                        </div>
                     </div>
                 @endif
             @endforeach
 
-            @if (empty($data) && empty($tendikList))
-                <div class="col-12 text-muted text-center">
-                    <p>Belum ada data guru & tendik yang ditampilkan.</p>
-                </div>
+            @if (($data ?? ($tendikList ?? collect()))->isEmpty())
+                <p class="text-muted w-100 text-center">Belum ada data guru & tendik.</p>
             @endif
         </div>
     </div>
