@@ -1,10 +1,10 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Daftar Social Media')
+@section('title', 'Profil Sekolah')
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="h3 mb-4 text-gray-800">Form Tambah Sosial Media</h1>
+        <h1 class="h3 mb-4 text-gray-800">Profil Sekolah</h1>
 
         {{-- Alert --}}
         @if (session('success'))
@@ -21,89 +21,106 @@
             </div>
         @endif
 
-        {{-- Form Input --}}
+        {{-- Form --}}
         <div class="card mb-4 shadow">
             <div class="card-body">
-                <form action="{{ route('sosialmedia.store') }}" method="POST">
+                <form action="{{ route('profilsekolah.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
 
+                    {{-- Nama Sekolah --}}
                     <div class="form-group">
-                        <label for="platform">Nama Sosial Media</label>
-                        <select class="form-control" id="platform" name="platform" required>
-                            <option disabled selected value="">Pilih Sosial Media</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="YouTube">YouTube</option>
-                            <option value="TikTok">TikTok</option>
-                            <option value="Twitter">Twitter</option>
-                        </select>
+                        <label for="nama_sekolah">Nama Sekolah</label>
+                        <input class="form-control" id="nama_sekolah" name="nama_sekolah" required type="text" value="{{ old('nama_sekolah', $profil->nama_sekolah ?? '') }}">
                     </div>
 
+                    {{-- Slogan --}}
                     <div class="form-group">
-                        <label for="nama">Nama Akun</label>
-                        <input class="form-control" id="nama" name="nama" placeholder="@smpit.binainsani" required type="text">
+                        <label for="slogan">Slogan</label>
+                        <textarea class="form-control" id="slogan" name="slogan" rows="2">{{ old('slogan', $profil->slogan ?? '') }}</textarea>
                     </div>
 
+                    {{-- Alamat --}}
                     <div class="form-group">
-                        <label for="link">Link Sosial Media</label>
-                        <input class="form-control" id="link" name="link" placeholder="https://www.instagram.com/akunmu" required type="url">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ old('alamat', $profil->alamat ?? '') }}</textarea>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-save mr-1"></i> Simpan
+                    {{-- Kontak --}}
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="telepon">Telepon</label>
+                            <input class="form-control" id="telepon" name="telepon" type="text" value="{{ old('telepon', $profil->telepon ?? '') }}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="wa">WhatsApp</label>
+                            <input class="form-control" id="wa" name="wa" type="text" value="{{ old('wa', $profil->wa ?? '') }}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email">Email</label>
+                            <input class="form-control" id="email" name="email" type="email" value="{{ old('email', $profil->email ?? '') }}">
+                        </div>
+                    </div>
+
+                    {{-- Maps Embed --}}
+                    <div class="form-group">
+                        <label for="maps">Link Embed Google Maps</label>
+                        <textarea class="form-control" id="maps" name="maps" placeholder="https://www.google.com/maps/embed?..." rows="2">{{ old('maps', $profil->maps ?? '') }}</textarea>
+                    </div>
+
+                    {{-- Upload Logo Sekolah --}}
+                    @php
+                        $logoFields = [
+                            'logo_smpit' => 'Logo SMPIT',
+                            'logo_jsit' => 'Logo JSIT',
+                            'logo_yayasan' => 'Logo Yayasan',
+                            'logo_kota' => 'Logo Kota',
+                        ];
+                    @endphp
+
+                    <div class="row rounded border">
+                        @foreach ($logoFields as $field => $label)
+                            <div class="form-group col-md-6 gap-1">
+                                <label for="{{ $field }}">{{ $label }}</label>
+                                @if (!empty($profil->$field))
+                                    <div class="mb-2">
+                                        <img alt="{{ $label }}" src="{{ asset('storage/' . $profil->$field) }}" style="max-height: 80px;">
+                                    </div>
+                                @endif
+                                <div class="custom-file">
+                                    <input class="custom-file-input" id="{{ $field }}" name="{{ $field }}" type="file">
+                                    <label class="custom-file-label" for="{{ $field }}">Pilih file...</label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    {{-- Submit --}}
+                    <button class="btn btn-primary mt-3" type="submit">
+                        <i class="fas fa-save mr-1"></i> Simpan Profil
                     </button>
+                    {{-- Tampilkan Peta jika tersedia --}}
+                    @if (!empty($profil->maps))
+                        <div class="mb-4 mt-5">
+                            <label class="fw-bold">Peta Lokasi:</label>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe allowfullscreen class="embed-responsive-item" frameborder="0" src="{{ $profil->maps }}"></iframe>
+                            </div>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>
-
-        {{-- Table Daftar Sosial Media --}}
-        <div class="card shadow">
-            <div class="card-header">
-                <h6 class="font-weight-bold text-primary m-0">Daftar Sosial Media</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table-bordered table-hover table" width="100%">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>No</th>
-                                <th>Platform</th>
-                                <th>Nama Akun</th>
-                                <th>Link</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($dataSosmed as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->platform }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>
-                                        <a href="{{ $item->link }}" target="_blank">{{ $item->link }}</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-warning" href="{{ route('sosialmedia.edit', $item->id) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('sosialmedia.destroy', $item->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-center" colspan="5">Belum ada data sosial media.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        // Tampilkan nama file saat dipilih
+        document.querySelectorAll('.custom-file-input').forEach(input => {
+            input.addEventListener('change', function(e) {
+                let fileName = e.target.files[0]?.name || 'Pilih file...';
+                e.target.nextElementSibling.innerText = fileName;
+            });
+        });
+    </script>
 @endsection
