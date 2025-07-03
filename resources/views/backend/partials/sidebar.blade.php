@@ -77,11 +77,38 @@
         </a>
         <div class="{{ $akademikActive ? 'show' : '' }} collapse" data-parent="#accordionSidebar" id="collapseAkademik">
             <div class="collapse-inner rounded bg-white py-2">
-                {{-- <a class="collapse-item" href="#">Daftar Tendik</a> --}}
-                <a class="collapse-item {{ request()->routeIs('siswa.index') ? 'active' : '' }}" href="{{ route('siswa.index') }}">Daftar Siswa</a>
-                <a class="collapse-item {{ request()->routeIs('berita.index') ? 'active' : '' }}" href="{{ route('berita.index') }}">Daftar Berita</a>
+                <h6 class="collapse-header">Akademik Sekolah:</h6>
+
+                {{-- Aktif: Link --}}
+                <a class="collapse-item {{ request()->routeIs('siswa.index') ? 'active' : '' }}" href="{{ route('siswa.index') }}">
+                    Daftar Siswa
+                </a>
+                <a class="collapse-item {{ request()->routeIs('berita.index') ? 'active' : '' }}" href="{{ route('berita.index') }}">
+                    Daftar Berita
+                </a>
+                <a class="collapse-item {{ request()->routeIs('mapel.index') ? 'active' : '' }}" href="{{ route('mapel.index') }}">
+                    Mata Pelajaran
+                </a>
+
+
+                <a class="collapse-item {{ request()->routeIs('guru.tendik.form') ? 'active' : '' }}" href="{{ route('guru.tendik.form') }}">
+                    Daftar Guru & Tendik
+                </a>
+                <a class="collapse-item {{ request()->routeIs('rombel.form') ? 'active' : '' }}" href="{{ route('rombel.form') }}">
+                    Data Kelas & Rombel
+                </a>
+
+                {{-- Placeholder: Belum pakai link --}}
+                <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Jadwal Pelajaran</a>
+                <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Data Nilai Siswa</a>
+                <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Absensi Siswa</a>
+                <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Ekstrakurikuler</a>
+                <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Prestasi Siswa</a>
+                <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Kalender Akademik</a>
             </div>
         </div>
+
+
     </li>
 
     {{-- Charts (optional) --}}

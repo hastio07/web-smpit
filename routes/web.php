@@ -11,6 +11,7 @@ use App\Http\Controllers\TigaProgramController;
 use App\Http\Controllers\ProfilKepsekController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SosialMediaController;
+use App\Http\Controllers\MapelController;
 
 use App\Models\KategoriBerita;
 use App\Models\Berita;
@@ -19,6 +20,7 @@ use App\Models\TigaProgram;
 use App\Models\ProfilKepsek;
 use App\Models\ProfilSekolah;
 use App\Models\SosialMedia;
+
 /*
 |--------------------------------------------------------------------------
 | 🌐 Public Routes (Tanpa Login)
@@ -101,7 +103,6 @@ Route::middleware('auth')
         Route::put('/profil-kepsek/{id}', [ProfilKepsekController::class, 'update'])->name('profilkepsek.update');
 
         // ✅ Profil Sekolah
-
         Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profilsekolah.index');
         Route::post('/profil-sekolah', [ProfilSekolahController::class, 'store'])->name('profilsekolah.store');
         Route::put('/profil-sekolah/{id}', [ProfilSekolahController::class, 'update'])->name('profilsekolah.update');
@@ -112,6 +113,22 @@ Route::middleware('auth')
         Route::get('/sosial-media/{id}/edit', [SosialMediaController::class, 'edit'])->name('sosialmedia.edit');
         Route::put('/sosial-media/{id}', [SosialMediaController::class, 'update'])->name('sosialmedia.update');
         Route::delete('/sosial-media/{id}', [SosialMediaController::class, 'destroy'])->name('sosialmedia.destroy');
+
+        Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
+        Route::post('/mapel', [MapelController::class, 'store'])->name('mapel.store');
+        Route::get('/mapel/{id}/edit', [MapelController::class, 'edit'])->name('mapel.edit');
+        Route::put('/mapel/{id}', [MapelController::class, 'update'])->name('mapel.update');
+        Route::delete('/mapel/{id}', [MapelController::class, 'destroy'])->name('mapel.destroy');
+
+        // 👥 Guru & Tendik (sementara menggunakan view langsung)
+        Route::get('/guru-tendik', function () {
+            return view('backend.daftarTendik');
+        })->name('guru.tendik.form');
+        Route::get('/rombel', function () {
+            return view('backend.daftarRombel');
+        })->name('rombel.form');
+
+        Route::view('/comingsoon', 'backend.comingsoon')->name('coming.soon');
 
         // 🛡️ Khusus Admin
         Route::middleware('admin')->group(function () {
