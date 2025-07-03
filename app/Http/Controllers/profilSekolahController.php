@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProfilSekolah;
 use Illuminate\Support\Facades\Storage;
 
-class profilSekolahController extends Controller
+class ProfilSekolahController extends Controller
 {
     public function index()
     {
