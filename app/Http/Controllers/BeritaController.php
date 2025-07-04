@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class BeritaController extends Controller
 {
     // 🧾 Menampilkan daftar & form upload berita di backend
+    // 🌐 Menampilkan daftar berita di frontend
     public function index(Request $request)
     {
         $query = Berita::with('kategori')->latest();

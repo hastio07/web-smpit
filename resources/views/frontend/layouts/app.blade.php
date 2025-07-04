@@ -76,7 +76,7 @@
                             <a class="nav-link text-white" href="/">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Tentang</a>
+                            <a class="nav-link text-white" href="#">Profil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">Layanan</a>
