@@ -45,7 +45,12 @@
                 </div>
             @endforeach
         @else
-            <p class="text-center">Belum ada berita yang tersedia.</p>
+            <p class="text-center">
+                @if (request('search'))
+                    Tidak ditemukan berita dengan judul "<strong>{{ request('search') }}</strong>".
+                @else
+                    Belum ada berita yang tersedia.
+                @endif
         @endif
     </div>
 @endsection
