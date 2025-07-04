@@ -30,7 +30,7 @@
     @endphp
     <li class="nav-item">
         <a aria-controls="collapseProfil" aria-expanded="{{ $profilActive ? 'true' : 'false' }}" class="nav-link {{ $profilActive ? '' : 'collapsed' }}" data-target="#collapseProfil" data-toggle="collapse" href="#">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-school"></i>
             <span>Profil & Sosmed</span>
         </a>
         <div class="{{ $profilActive ? 'show' : '' }} collapse" data-parent="#accordionSidebar" id="collapseProfil">
@@ -49,7 +49,7 @@
     @endphp
     <li class="nav-item">
         <a aria-controls="collapseProgram" aria-expanded="{{ $programActive ? 'true' : 'false' }}" class="nav-link {{ $programActive ? '' : 'collapsed' }}" data-target="#collapseProgram" data-toggle="collapse" href="#">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fas fa-book-open"></i>
             <span>Program</span>
         </a>
         <div class="{{ $programActive ? 'show' : '' }} collapse" data-parent="#accordionSidebar" id="collapseProgram">
@@ -68,10 +68,11 @@
 
     {{-- Pages - Akademik --}}
     @php
-        $akademikActive = request()->is('admin/siswa', 'admin/berita*');
+        $akademikActive = request()->is('admin/siswa', 'admin/berita*', 'admin/mapel*', 'admin/guru-tendik*', 'admin/rombel*');
     @endphp
+
     <li class="nav-item">
-        <a aria-controls="collapseAkademik" aria-expanded="{{ $akademikActive ? 'true' : 'false' }}" class="nav-link {{ $akademikActive ? '' : 'collapsed' }}" data-target="#collapseAkademik" data-toggle="collapse" href="#">
+        <a aria-controls="collapseAkademik" aria-expanded="{{ $akademikActive ? 'true' : 'false' }}" class="nav-link {{ $akademikActive ? '' : 'collapsed' }}" data-toggle="collapse" href="#collapseAkademik" role="button">
             <i class="fas fa-fw fa-folder"></i>
             <span>Akademik</span>
         </a>
@@ -79,7 +80,6 @@
             <div class="collapse-inner rounded bg-white py-2">
                 <h6 class="collapse-header">Akademik Sekolah:</h6>
 
-                {{-- Aktif: Link --}}
                 <a class="collapse-item {{ request()->routeIs('siswa.index') ? 'active' : '' }}" href="{{ route('siswa.index') }}">
                     Daftar Siswa
                 </a>
@@ -89,16 +89,14 @@
                 <a class="collapse-item {{ request()->routeIs('mapel.index') ? 'active' : '' }}" href="{{ route('mapel.index') }}">
                     Mata Pelajaran
                 </a>
-
                 <a class="collapse-item {{ request()->routeIs('guru.tendik.index') ? 'active' : '' }}" href="{{ route('guru.tendik.index') }}">
                     Daftar Guru & Tendik
                 </a>
-
                 <a class="collapse-item {{ request()->routeIs('rombel.form') ? 'active' : '' }}" href="{{ route('rombel.form') }}">
                     Data Kelas & Rombel
                 </a>
 
-                {{-- Placeholder: Belum pakai link --}}
+                {{-- Placeholder --}}
                 <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Jadwal Pelajaran</a>
                 <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Data Nilai Siswa</a>
                 <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Absensi Siswa</a>
@@ -107,17 +105,17 @@
                 <a class="collapse-item disabled" href="{{ route('coming.soon') }}">Kalender Akademik</a>
             </div>
         </div>
-
-
     </li>
+
 
     {{-- Charts (optional) --}}
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
+            <i class="fas fa-trophy"></i>
+            <span>Prestasi Siswa</span>
         </a>
     </li>
+
 
     {{-- Tables (optional) --}}
     <li class="nav-item">

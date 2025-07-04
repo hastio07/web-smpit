@@ -60,7 +60,7 @@
 
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
-                            <select class="form-control" id="kategori" name="kategori" required>
+                            <select class="form-control" name="kategori" required>
                                 <option value="">-- Pilih Kategori --</option>
                                 @foreach ($kategoriList as $kategori)
                                     <option {{ old('kategori', $berita->kategori_id ?? '') == $kategori->id ? 'selected' : '' }} value="{{ $kategori->id }}">
@@ -89,7 +89,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="kategori">Nama Kategori</label>
-                            <input class="form-control" id="kategori" name="kategori" required type="text">
+                            <input class="form-control" name="kategori" required type="text">
                         </div>
                         <button class="btn btn-success mt-2" type="submit">Simpan Kategori</button>
                     </form>
@@ -112,62 +112,62 @@
         </div>
     </div>
 
-    {{-- Tabel Daftar Berita --}}
+    {{-- Tabel Berita --}}
     <div class="card mb-4 shadow">
         <div class="card-header py-3">
             <h6 class="font-weight-bold text-primary m-0">Daftar Berita</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table-bordered table" id="table-berita" width="100%">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>No</th>
-                            <th>Judul</th>
-                            <th>Kategori</th>
-                            <th>Tanggal</th>
-                            <th>Isi</th>
-                            <th>Gambar</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($beritaList as $i => $item)
+            @if ($beritaList->isEmpty())
+                <div class="text-muted text-center">Belum ada berita.</div>
+            @else
+                <div class="table-responsive">
+                    <table class="table-bordered table" id="table-berita" width="100%">
+                        <thead class="thead-light">
                             <tr>
-                                <td>{{ $i + 1 }}</td>
-                                <td>{{ $item->judul }}</td>
-                                <td>{{ $item->kategori->nama ?? '-' }}</td>
-                                <td>{{ $item->created_at->format('d M Y') }}</td>
-                                <td>{{ \Illuminate\Support\Str::limit(strip_tags($item->konten), 100) }}</td>
-                                <td>
-                                    @if ($item->file)
-                                        <img class="img-thumbnail" src="{{ asset('storage/' . $item->file) }}" width="60">
-                                    @else
-                                        <span class="text-muted">-</span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group btn-group-sm">
-                                        <a class="btn btn-warning" href="{{ route('berita.edit', $item->id) }}" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('berita.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?')">
-                                            @csrf @method('DELETE')
-                                            <button class="btn btn-danger" title="Hapus">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th>No</th>
+                                <th>Judul</th>
+                                <th>Kategori</th>
+                                <th>Tanggal</th>
+                                <th>Isi</th>
+                                <th>Gambar</th>
+                                <th>Aksi</th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td class="text-muted text-center" colspan="7">Belum ada berita.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach ($beritaList as $i => $item)
+                                <tr>
+                                    <td>{{ $i + 1 }}</td>
+                                    <td>{{ $item->judul }}</td>
+                                    <td>{{ $item->kategori->nama ?? '-' }}</td>
+                                    <td>{{ $item->created_at->format('d M Y') }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit(strip_tags($item->konten), 100) }}</td>
+                                    <td>
+                                        @if ($item->file)
+                                            <img class="img-thumbnail" src="{{ asset('storage/' . $item->file) }}" width="60">
+                                        @else
+                                            <span class="text-muted">-</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm">
+                                            <a class="btn btn-warning" href="{{ route('berita.edit', $item->id) }}" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('berita.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?')">
+                                                @csrf @method('DELETE')
+                                                <button class="btn btn-danger" title="Hapus">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
@@ -185,54 +185,43 @@
         });
     </script>
 
-    <!-- DataTables & UI Handling -->
+    <!-- DataTables & UI -->
     <script>
         $(function() {
-            // 🟢 Inisialisasi DataTables
-            $('#table-berita').DataTable({
-                responsive: true,
-                autoWidth: false,
-                language: {
-                    search: "Cari:",
-                    lengthMenu: "Tampilkan _MENU_ entri",
-                    zeroRecords: "Tidak ditemukan data yang cocok",
-                    info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
-                    infoEmpty: "Tidak ada data tersedia",
-                    infoFiltered: "(difilter dari _MAX_ total entri)",
-                    paginate: {
-                        first: "Awal",
-                        last: "Akhir",
-                        next: "Berikutnya",
-                        previous: "Sebelumnya"
+            @if ($beritaList->isNotEmpty())
+                $('#table-berita').DataTable({
+                    responsive: true,
+                    autoWidth: false,
+                    language: {
+                        search: "Cari:",
+                        lengthMenu: "Tampilkan _MENU_ entri",
+                        zeroRecords: "Tidak ditemukan data yang cocok",
+                        info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
+                        infoEmpty: "Tidak ada data tersedia",
+                        infoFiltered: "(difilter dari _MAX_ total entri)",
+                        paginate: {
+                            first: "Awal",
+                            last: "Akhir",
+                            next: "Berikutnya",
+                            previous: "Sebelumnya"
+                        }
                     }
-                }
-            });
+                });
+            @endif
 
-            // 🟡 Toggle Form Tambah/Edit
-            const $formContainer = $('#formContainer');
-            const $btnToggle = $('#btnToggleForm');
-            $btnToggle.on('click', function() {
-                $formContainer.slideToggle();
-                const isVisible = $formContainer.is(':visible');
-                $(this).html(isVisible ?
+            $('#btnToggleForm').on('click', function() {
+                $('#formContainer').slideToggle();
+                const visible = $('#formContainer').is(':visible');
+                $(this).html(visible ?
                     '<i class="fas fa-times-circle"></i> Tutup Form' :
                     '<i class="fas fa-plus-circle"></i> Tambah Berita / Kategori'
                 );
             });
 
-            // 🔵 Otomatis tampilkan form jika sedang mode edit
-            if (new URLSearchParams(window.location.search).get('edit') === 'true') {
-                $formContainer.show();
-                $btnToggle.html('<i class="fas fa-times-circle"></i> Tutup Form');
-                $('html, body').animate({
-                    scrollTop: $formContainer.offset().top - 100
-                }, 600);
-            }
-
-            // 🟣 Preview Gambar Baru Saat Upload
+            // Preview gambar baru
             const gambarInput = document.getElementById('gambar');
             if (gambarInput) {
-                gambarInput.addEventListener('change', function(e) {
+                gambarInput.addEventListener('change', function() {
                     const file = this.files[0];
                     if (file && file.type.startsWith('image/')) {
                         const reader = new FileReader();
@@ -251,7 +240,7 @@
                 });
             }
 
-            // 🔘 Auto-hide alert sukses
+            // Auto-hide alert sukses
             setTimeout(() => $('.alert-success').fadeOut('slow'), 3000);
         });
     </script>

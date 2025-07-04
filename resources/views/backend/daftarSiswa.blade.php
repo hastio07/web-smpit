@@ -97,64 +97,64 @@
             <h6 class="font-weight-bold text-primary m-0">Data Siswa</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table-bordered table" id="table-siswa" width="100%">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>NIS</th>
-                            <th>Kelas</th>
-                            <th>Status</th>
-                            <th>Email</th>
-                            <th>Nomor HP</th>
-                            <th>Orang Tua</th>
-                            <th>Alamat</th>
-                            <th>Foto</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($siswa as $i => $row)
+            @if ($siswa->isEmpty())
+                <div class="text-muted text-center">Belum ada data siswa.</div>
+            @else
+                <div class="table-responsive">
+                    <table class="table-bordered table" id="table-siswa" width="100%">
+                        <thead class="thead-light">
                             <tr>
-                                <td>{{ $i + 1 }}</td>
-                                <td>{{ $row->nama }}</td>
-                                <td>{{ $row->nis }}</td>
-                                <td>{{ $row->kelas }}</td>
-                                <td>{{ ucfirst($row->status) }}</td>
-                                <td>{{ $row->email }}</td>
-                                <td>{{ $row->nomor_hp }}</td>
-                                <td>{{ $row->nama_ayah ?? '-' }} / {{ $row->nama_ibu ?? '-' }}</td>
-                                <td>{{ $row->alamat }}</td>
-                                <td>
-                                    @if ($row->foto)
-                                        <img class="img-thumbnail" src="{{ asset('storage/' . $row->foto) }}" width="60">
-                                    @else
-                                        <span class="text-muted">-</span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <a class="btn btn-warning" href="{{ route('siswa.edit', $row->id) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('siswa.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                            @csrf @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>NIS</th>
+                                <th>Kelas</th>
+                                <th>Status</th>
+                                <th>Email</th>
+                                <th>Nomor HP</th>
+                                <th>Orang Tua</th>
+                                <th>Alamat</th>
+                                <th>Foto</th>
+                                <th>Aksi</th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td class="text-muted text-center" colspan="11">Belum ada data siswa.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach ($siswa as $i => $row)
+                                <tr>
+                                    <td>{{ $i + 1 }}</td>
+                                    <td>{{ $row->nama }}</td>
+                                    <td>{{ $row->nis }}</td>
+                                    <td>{{ $row->kelas }}</td>
+                                    <td>{{ ucfirst($row->status) }}</td>
+                                    <td>{{ $row->email }}</td>
+                                    <td>{{ $row->nomor_hp }}</td>
+                                    <td>{{ $row->nama_ayah ?? '-' }} / {{ $row->nama_ibu ?? '-' }}</td>
+                                    <td>{{ $row->alamat }}</td>
+                                    <td>
+                                        @if ($row->foto)
+                                            <img class="img-thumbnail" src="{{ asset('storage/' . $row->foto) }}" width="60">
+                                        @else
+                                            <span class="text-muted">-</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a class="btn btn-warning" href="{{ route('siswa.edit', $row->id) }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('siswa.destroy', $row->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                @csrf @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
@@ -167,11 +167,13 @@
                 $('#formTambahSiswa').slideToggle();
             });
 
-            // DataTable
-            $('#table-siswa').DataTable({
-                responsive: true,
-                autoWidth: false
-            });
+            // Jalankan DataTables hanya jika table tersedia
+            @if (!$siswa->isEmpty())
+                $('#table-siswa').DataTable({
+                    responsive: true,
+                    autoWidth: false
+                });
+            @endif
 
             // Preview Foto
             $('#foto').on('change', function() {

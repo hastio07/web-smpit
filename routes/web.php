@@ -33,8 +33,10 @@ Route::get('/daftar-tendik', [GuruTendikController::class, 'daftarTendikFrontend
 Route::get('/daftar-siswa', [SiswaController::class, 'daftarSiswaFrontend'])->name('daftar.siswa');
 Route::get('/daftar-siswa/{siswa}', [SiswaController::class, 'show'])->name('siswa.show');
 Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.detail');
-Route::view('/detail-siswa', 'frontend.detailSiswa');
+Route::get('/guru-tendik/{id}', [GuruTendikController::class, 'show'])->name('guru.tendik.show');
 
+// Route::view('/detail-siswa', 'frontend.detailSiswa');
+// Route::view('/detail-tendik', 'frontend.detailTendik');
 /*
 |--------------------------------------------------------------------------
 | 🔐 Auth Routes

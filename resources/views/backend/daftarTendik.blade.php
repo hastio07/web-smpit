@@ -1,5 +1,4 @@
 @extends('backend.layouts.app')
-
 @section('title', 'Guru & Tendik')
 
 @section('content')
@@ -137,67 +136,63 @@
         </div>
 
         {{-- TABLE --}}
-        <div class="card shadow">
-            <div class="card-header">
-                <h6 class="font-weight-bold text-primary m-0">Daftar Guru & Tendik</h6>
-            </div>
-            <div class="card-body table-responsive">
-                <table class="table-sm table-bordered table-hover table">
-                    <thead class="thead-light">
+        <div class="card-body table-responsive">
+            <table cellspacing="0" class="table-bordered table-hover table-sm table" data-has-data="{{ $data->count() > 0 ? '1' : '0' }}" id="dataTable" width="100%">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nama</th>
+                        <th>Jenis PTK</th>
+                        <th>Jabatan</th>
+                        <th>Status</th>
+                        <th>Pendidikan</th>
+                        <th>Mapel</th>
+                        <th>Email</th>
+                        <th>HP</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($data as $item)
                         <tr>
-                            <th>Foto</th>
-                            <th>Nama</th>
-                            <th>Jenis PTK</th>
-                            <th>Jabatan</th>
-                            <th>Status</th>
-                            <th>Pendidikan</th>
-                            <th>Mapel</th>
-                            <th>Email</th>
-                            <th>HP</th>
-                            <th>Aksi</th>
+                            <td>
+                                @if ($item->foto)
+                                    <img class="img-thumbnail" src="{{ asset('storage/' . $item->foto) }}" style="width: 60px; height: 60px;">
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
+                            <td>{{ $item->nama_lengkap }}</td>
+                            <td>
+                                @foreach ($item->jenis_ptk as $j)
+                                    <span class="badge badge-info">{{ $j }}</span>
+                                @endforeach
+                            </td>
+                            <td>{{ $item->jabatan ?? '-' }}</td>
+                            <td>{{ $item->status_kepegawaian }}</td>
+                            <td>{{ $item->pendidikan_terakhir }}</td>
+                            <td>{{ $item->mapel->nama_mapel ?? '-' }}</td>
+                            <td>{{ $item->email ?? '-' }}</td>
+                            <td>{{ $item->no_hp ?? '-' }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="{{ route('guru.tendik.edit', $item->id) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="{{ route('guru.tendik.destroy', $item->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin hapus?')">
+                                    @csrf @method('DELETE')
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($data as $item)
-                            <tr>
-                                <td>
-                                    @if ($item->foto)
-                                        <img class="img-thumbnail" src="{{ asset('storage/' . $item->foto) }}" style="width: 60px; height: 60px;">
-                                    @else
-                                        <span class="text-muted">-</span>
-                                    @endif
-                                </td>
-                                <td>{{ $item->nama_lengkap }}</td>
-                                <td>
-                                    @foreach ($item->jenis_ptk as $j)
-                                        <span class="badge badge-info">{{ $j }}</span>
-                                    @endforeach
-                                </td>
-                                <td>{{ $item->jabatan ?? '-' }}</td>
-                                <td>{{ $item->status_kepegawaian }}</td>
-                                <td>{{ $item->pendidikan_terakhir }}</td>
-                                <td>{{ $item->mapel->nama_mapel ?? '-' }}</td>
-                                <td>{{ $item->email ?? '-' }}</td>
-                                <td>{{ $item->no_hp ?? '-' }}</td>
-                                <td>
-                                    <a class="btn btn-sm btn-warning" href="{{ route('guru.tendik.edit', $item->id) }}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('guru.tendik.destroy', $item->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin hapus?')">
-                                        @csrf @method('DELETE')
-                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td class="text-center" colspan="10">Belum ada data.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+                    @empty
+                        <tr>
+                            <td class="text-center" colspan="10">Belum ada data.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
+
     </div>
 @endsection
 
@@ -227,5 +222,28 @@
                 setTimeout(() => alert.remove(), 300); // Hapus elemen setelah animasi
             });
         }, 3000);
+
+
+        $(document).ready(function() {
+            const hasData = $('#dataTable').data('has-data');
+            if (hasData === 1 || hasData === '1') {
+                $('#dataTable').DataTable({
+                    responsive: true,
+                    autoWidth: false,
+                    language: {
+                        search: "Cari:",
+                        lengthMenu: "Tampilkan _MENU_ entri",
+                        zeroRecords: "Tidak ditemukan data",
+                        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                        infoEmpty: "Tidak ada data tersedia",
+                        infoFiltered: "(disaring dari _MAX_ total entri)",
+                        paginate: {
+                            previous: "Sebelumnya",
+                            next: "Berikutnya"
+                        }
+                    }
+                });
+            }
+        });
     </script>
 @endpush

@@ -9,12 +9,27 @@ use Illuminate\Support\Facades\Storage;
 
 class GuruTendikController extends Controller
 {
-    public function daftarTendikFrontend()
+    // ✅ FRONTEND - Detail Guru
+    public function show($id)
     {
-        $data = \App\Models\GuruTendik::with('mapel')->latest()->get();
+        $tendik = GuruTendik::with('mapel')->findOrFail($id);
+        return view('frontend.detailTendik', compact('tendik'));
+    }
+
+    // ✅ FRONTEND - Daftar Guru & Tendik + Pencarian
+    public function daftarTendikFrontend(Request $request)
+    {
+        $query = GuruTendik::with('mapel')->latest();
+
+        if ($request->filled('search')) {
+            $query->where('nama_lengkap', 'like', '%' . $request->search . '%');
+        }
+
+        $data = $query->get();
         return view('frontend.tendik', compact('data'));
     }
 
+    // ✅ BACKEND - Tampilkan data
     public function index()
     {
         $data = GuruTendik::with('mapel')->latest()->get();
@@ -22,6 +37,7 @@ class GuruTendikController extends Controller
         return view('backend.daftarTendik', compact('data', 'mapelList'));
     }
 
+    // ✅ BACKEND - Simpan data baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -48,6 +64,7 @@ class GuruTendikController extends Controller
         return redirect()->route('guru.tendik.index')->with('success', 'Data guru berhasil disimpan.');
     }
 
+    // ✅ BACKEND - Edit data
     public function edit($id)
     {
         $edit = GuruTendik::findOrFail($id);
@@ -56,6 +73,7 @@ class GuruTendikController extends Controller
         return view('backend.daftarTendik', compact('edit', 'data', 'mapelList'));
     }
 
+    // ✅ BACKEND - Update data
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -87,6 +105,7 @@ class GuruTendikController extends Controller
         return redirect()->route('guru.tendik.index')->with('success', 'Data berhasil diperbarui.');
     }
 
+    // ✅ BACKEND - Hapus data
     public function destroy($id)
     {
         $guru = GuruTendik::findOrFail($id);
