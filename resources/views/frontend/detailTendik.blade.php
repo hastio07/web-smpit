@@ -41,7 +41,7 @@
                         <td>: {{ $tendik->no_hp }}</td>
                     </tr>
                     <tr>
-                        <th>NIP</th>
+                        <th>NIP/NIY</th>
                         <td>: {{ $tendik->nip }}</td>
                     </tr>
                     <tr>

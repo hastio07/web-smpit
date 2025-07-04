@@ -261,7 +261,7 @@
                     @endforeach
                 </div>
                 <div class="text-center">
-                    <a class="btn btn-info" href="/">Berita Lengkap</a>
+                    <a class="btn btn-info" href="/berita">Berita Lengkap</a>
                 </div>
             @else
                 <p class="text-center">Belum ada berita yang tersedia.</p>
