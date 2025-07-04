@@ -19,9 +19,6 @@
             </div>
         </form>
 
-
-
-
         {{-- Galeri --}}
         <div class="gallery-flex">
             @foreach ($data ?? [] as $tendik)

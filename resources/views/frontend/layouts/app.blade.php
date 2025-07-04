@@ -82,7 +82,7 @@
                             <a class="nav-link text-white" href="#">Layanan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Kontak</a>
+                            <a class="nav-link text-white" href="/berita">Berita</a>
                         </li>
 
                         <!-- ✅ Dropdown Akademik -->

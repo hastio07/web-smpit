@@ -34,8 +34,9 @@ Route::get('/daftar-siswa', [SiswaController::class, 'daftarSiswaFrontend'])->na
 Route::get('/daftar-siswa/{siswa}', [SiswaController::class, 'show'])->name('siswa.show');
 Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.detail');
 Route::get('/guru-tendik/{id}', [GuruTendikController::class, 'show'])->name('guru.tendik.show');
+Route::get('/berita', [BeritaController::class, 'daftarBeritaFrontend'])->name('berita.index');
 
-Route::view('/berita', 'frontend.berita');
+// Route::view('/berita', 'frontend.berita');
 // Route::view('/detail-tendik', 'frontend.detailTendik');
 /*
 |--------------------------------------------------------------------------

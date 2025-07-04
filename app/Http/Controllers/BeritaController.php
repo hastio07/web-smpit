@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\Storage;
 class BeritaController extends Controller
 {
     // 🧾 Menampilkan daftar & form upload berita di backend
-    public function index()
+    public function index(Request $request)
     {
-        $kategoriList = KategoriBerita::all();
-        $beritaList = Berita::with('kategori')->latest()->get();
+        $query = Berita::with('kategori')->latest();
 
-        return view('backend.daftarBerita', compact('kategoriList', 'beritaList'));
+        if ($request->filled('search')) {
+            $query->where('judul', 'like', '%' . $request->search . '%');
+        }
+
+        $beritaList = $query->get();
+
+        return view('frontend.berita', compact('beritaList'));
     }
 
     // 💾 Simpan berita baru
@@ -101,5 +106,11 @@ class BeritaController extends Controller
         $berita = Berita::with('kategori')->findOrFail($id);
         $beritaTerbaru = Berita::where('id', '!=', $id)->latest()->take(3)->get();
         return view('frontend.detailBerita', compact('berita', 'beritaTerbaru'));
+    }
+    // 🌐 Menampilkan daftar berita di frontend (gambar selang-seling)
+    public function daftarBeritaFrontend()
+    {
+        $beritaList = Berita::with('kategori')->latest()->get();
+        return view('frontend.berita', compact('beritaList'));
     }
 }
