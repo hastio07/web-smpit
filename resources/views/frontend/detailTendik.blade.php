@@ -29,7 +29,8 @@
                     </tr>
                     <tr>
                         <th>Mapel</th>
-                        <td>: {{ $tendik->mapel->nama ?? '-' }}</td>
+                        <td>: {{ $tendik->mapel->nama_mapel ?? '-' }}</td>
+
                     </tr>
                     <tr>
                         <th>Email</th>
