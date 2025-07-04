@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -34,10 +35,11 @@ Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.deta
 
 // ✅ Daftar Guru & Siswa
 Route::get('/daftar-tendik', [GuruTendikController::class, 'daftarTendikFrontend'])->name('daftar.tendik');
+Route::get('/daftar-tendik/{id}', [GuruTendikController::class, 'show'])->name('guru.tendik.show'); // ✅ Tambahkan ini
 Route::get('/daftar-siswa', [SiswaController::class, 'daftarSiswaFrontend'])->name('daftar.siswa');
 Route::get('/daftar-siswa/{siswa}', [SiswaController::class, 'show'])->name('siswa.show');
 
-// Dummy Static View
+// Dummy Static View (jika tidak dipakai bisa dihapus)
 Route::view('/detail-siswa', 'frontend.detailSiswa');
 Route::view('/detail-tendik', 'frontend.detailTendik');
 
@@ -117,7 +119,7 @@ Route::middleware('auth')
         Route::put('/guru-tendik/{id}', [GuruTendikController::class, 'update'])->name('guru.tendik.update');
         Route::delete('/guru-tendik/{id}', [GuruTendikController::class, 'destroy'])->name('guru.tendik.destroy');
 
-        // Dummy Menu
+        // 🔧 Menu Tambahan
         Route::view('/rombel', 'backend.daftarRombel')->name('rombel.form');
         Route::view('/comingsoon', 'backend.comingsoon')->name('coming.soon');
 
