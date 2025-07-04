@@ -244,9 +244,6 @@
                                 @endif
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $berita->judul }}</h5>
-                                    {{-- <p class="card-text small text-muted">
-                                        {{ \Illuminate\Support\Str::limit(strip_tags($berita->konten), 100) }}
-                                    </p> --}}
                                     <p class="card-text text-muted small mt-auto">
                                         {{ $berita->kategori->nama ?? 'Tanpa Kategori' }} ·
                                         {{ \Carbon\Carbon::parse($berita->created_at)->translatedFormat('d M Y') }}
@@ -261,7 +258,7 @@
                     @endforeach
                 </div>
                 <div class="text-center">
-                    <a class="btn btn-info" href="/berita">Berita Lengkap</a>
+                    <a class="btn btn-info text-white" href="/berita">Berita Lengkap</a>
                 </div>
             @else
                 <p class="text-center">Belum ada berita yang tersedia.</p>
